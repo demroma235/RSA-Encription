@@ -1,0 +1,73 @@
+@import url(https://fonts.googleapis.com/css?family=Merriweather|Noto+Serif&subset=latin,cyrillic);
+
+body{
+    margin: 0;
+    padding: 0;
+    font-family: 'Noto Serif', serif;
+}
+.algoritms{
+    width: 1100px;
+    margin: 0 auto;
+}
+.algoritm{
+    width: 300px;
+    display: inline-block;
+    margin-right: 100px;
+    border: 1px solid darkgrey;
+    box-shadow: 0 0 10px 0 gray;
+    text-align: center;
+}
+.algoritm:nth-child(3n){
+    margin-right: 0;
+}
+.algoritm h3{
+    font-size: 1.5em;
+    font-family:  'Merriweather', serif;
+}
+.algoritm-button-load a{
+    text-decoration: none;
+    text-transform: none;
+}
+.button{
+    padding: 10px;
+    background-color: green;
+    border-bottom: 3px solid darkgreen;
+    color: white;
+    transition: 0.5s;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-radius: 2px;
+}
+.button:hover{
+    background-color: darkgreen;
+    border-bottom: 3px solid green;
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+body h1{
+    text-align: center;
+}
+.count{
+    width: 700px;
+    text-align: center;
+    line-height: 2;
+    margin: 0 auto;
+
+}
+.button-block{
+    border: none;
+}
+.head-block{
+    width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+#answer{
+    font-size: 2em;
+    font-weight: bold;
+}
+#curve_chart{
+    margin: 0 auto;
+}
