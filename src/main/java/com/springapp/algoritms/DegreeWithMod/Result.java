@@ -4,14 +4,14 @@ package com.springapp.algoritms.DegreeWithMod;
  * Created by Roman on 08.03.2016.
  */
 public class Result{
-    private int count;
-    private long timework;
+    private Long count;
+    private Long timework;
 
-    public int getCount() {
+    public Long getCount() {
         return count;
     }
 
-    public void setCount(int count) {
+    public void setCount(Long count) {
         this.count = count;
     }
 

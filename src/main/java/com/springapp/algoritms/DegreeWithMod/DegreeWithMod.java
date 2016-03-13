@@ -9,7 +9,7 @@ import java.util.ArrayList;
  */
 
 public class DegreeWithMod {
-    public Result count(int number, int degree, int mod) {
+    public Result count(long number, long degree, long mod) {
         //Записываем результаты в объект result
         Result result = new Result();
         //Объект для записи числа степени -> Для двоичного вида
@@ -17,18 +17,38 @@ public class DegreeWithMod {
         Tools tools = new Tools();
         bin = tools.decimal_in_binary(degree);
         //Создание массивов и его запись для вычисления выражения
-        int bin_count_int[] = new int[bin.size()];
+        long bin_count_int[] = new long[bin.size()];
         //Запись первого числа в массив
         bin_count_int[0] = number;
         //Сам алгоритм
-        for (int i = 1; i < bin.size(); i++) {
+        String bin_string = "";
+        for (int i=0; i<bin.size(); i++){
             if (bin.get(i)) {
-                bin_count_int[i] = (int) Math.pow(bin_count_int[i - 1], 2) * number % mod;
-            } else {
-                bin_count_int[i] = (int) Math.pow(bin_count_int[i - 1], 2) % mod;
+                bin_string += "1";
+            }
+            else{
+                bin_string += "0";
             }
         }
-        result.setCount(bin_count_int[bin.size() - 1]);
+        System.out.println(bin.size());
+        System.out.println(bin_string);
+        if (bin.size()==1){
+            result.setCount(number%mod);
+            System.out.println(result.getCount());
+        }
+        else{
+            for (int i = 1; i < bin.size(); i++) {
+                if (bin.get(i)) {
+                    bin_count_int[i] = (bin_count_int[i - 1]*bin_count_int[i - 1]) * number % mod;
+                } else {
+                    bin_count_int[i] = (bin_count_int[i - 1]*bin_count_int[i - 1]) % mod;
+                    System.out.println(bin_count_int[i - 1]*bin_count_int[i - 1]);
+                    System.out.println(bin_count_int[i - 1]*bin_count_int[i - 1] % mod);
+                }
+                System.out.println(i + " = " + bin_count_int[i] + " ");
+            }
+            result.setCount(bin_count_int[bin.size() - 1]);
+        }
         return result;
     }
 }

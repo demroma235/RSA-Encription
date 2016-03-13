@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="UTF-8"/>
-	<%@include file="include/head.jsp"%>
+	<%@include file="../include/head.jsp"%>
 </head>
 <body>
 	<div class="head-block">

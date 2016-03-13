@@ -10,7 +10,7 @@ import java.util.Map;
  * Created by Roman on 09.03.2016.
  */
 public class Test {
-    public Map<Integer, Long> test_for_degree_with_mod(int number, int degree, int mod){
+    public Map<Integer, Long> test_for_degree_with_mod(Long number, Long degree, Long mod){
         final int numberOfMeasurements = 50;
         int t0 = 100000;
         int t1 = 400000;

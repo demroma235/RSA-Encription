@@ -11,7 +11,7 @@ body{
 }
 .algoritm{
     width: 300px;
-    display: inline-block;
+    float: left;
     margin-right: 100px;
     border: 1px solid darkgrey;
     box-shadow: 0 0 10px 0 gray;
@@ -50,19 +50,20 @@ body h1{
     text-align: center;
 }
 .count{
-    width: 700px;
     text-align: center;
     line-height: 2;
     margin: 0 auto;
-
 }
 .button-block{
     border: none;
 }
 .head-block{
-    width: 800px;
-    margin: 0 auto;
+    width: 600px;
     text-align: center;
+    border: 1px solid darkgrey;
+    box-shadow: 0 0 10px 0 gray;
+    margin: 20px auto 0;
+    padding: 10px;
 }
 #answer{
     font-size: 2em;
@@ -70,4 +71,15 @@ body h1{
 }
 #curve_chart{
     margin: 0 auto;
+}
+input[type=number]{
+    margin: 10px;
+    width: 60px;
+    height: 30px;
+    font-size: 25px;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
 }

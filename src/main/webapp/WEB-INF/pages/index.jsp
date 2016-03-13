@@ -17,6 +17,14 @@
                 </a>
             </div>
         </div>
+        <div class="algoritm">
+            <h3>Поиск простого числа</h3>
+            <div class="algoritm-button-load">
+                <a href="/prime">
+                    <div class="button">Перейти</div>
+                </a>
+            </div>
+        </div>
     </div>
 </div>
 

@@ -6,10 +6,10 @@ import java.util.ArrayList;
  * Created by Roman on 09.03.2016.
  */
 public class Tools {
-    public ArrayList<Boolean> decimal_in_binary(int number){
+    public ArrayList<Boolean> decimal_in_binary(Long number){
         ArrayList<Boolean> bin = new ArrayList<Boolean>();
         //Переменная со степенью
-        int number_interval = number;
+        Long number_interval = number;
         //Запись обратного порядка двоичного предствления
         while (number_interval > 0) {
             if (number_interval % 2 == 0) {
