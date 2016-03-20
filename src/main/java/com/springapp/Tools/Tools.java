@@ -7,7 +7,12 @@ import java.util.ArrayList;
  */
 public class Tools {
     public ArrayList<Boolean> decimal_in_binary(Long number){
+
         ArrayList<Boolean> bin = new ArrayList<Boolean>();
+        if (number == 0){
+            bin.add(false);
+            return bin;
+        }
         //Переменная со степенью
         Long number_interval = number;
         //Запись обратного порядка двоичного предствления

@@ -13,28 +13,23 @@ public class DegreeWithMod {
         //Записываем результаты в объект result
         Result result = new Result();
         //Объект для записи числа степени -> Для двоичного вида
-        ArrayList<Boolean> bin = null;
         Tools tools = new Tools();
-        bin = tools.decimal_in_binary(degree);
+        ArrayList<Boolean> bin = tools.decimal_in_binary(degree);
         //Создание массивов и его запись для вычисления выражения
-        long bin_count_int[] = new long[bin.size()];
+        Long bin_count_int[] = new Long[bin.size()];
         //Запись первого числа в массив
         bin_count_int[0] = number;
         //Сам алгоритм
         String bin_string = "";
-        for (int i=0; i<bin.size(); i++){
-            if (bin.get(i)) {
+        for (Boolean aBin : bin) {
+            if (aBin) {
                 bin_string += "1";
-            }
-            else{
+            } else {
                 bin_string += "0";
             }
         }
-        System.out.println(bin.size());
-        System.out.println(bin_string);
         if (bin.size()==1){
-            result.setCount(number%mod);
-            System.out.println(result.getCount());
+            result.setCount((long) Math.pow(number, degree)%mod);
         }
         else{
             for (int i = 1; i < bin.size(); i++) {
@@ -42,10 +37,7 @@ public class DegreeWithMod {
                     bin_count_int[i] = (bin_count_int[i - 1]*bin_count_int[i - 1]) * number % mod;
                 } else {
                     bin_count_int[i] = (bin_count_int[i - 1]*bin_count_int[i - 1]) % mod;
-                    System.out.println(bin_count_int[i - 1]*bin_count_int[i - 1]);
-                    System.out.println(bin_count_int[i - 1]*bin_count_int[i - 1] % mod);
                 }
-                System.out.println(i + " = " + bin_count_int[i] + " ");
             }
             result.setCount(bin_count_int[bin.size() - 1]);
         }

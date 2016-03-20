@@ -14,12 +14,4 @@ public class Result{
     public void setCount(Long count) {
         this.count = count;
     }
-
-    public long getTimework() {
-        return timework;
-    }
-
-    public void setTimework(long timework) {
-        this.timework = timework;
-    }
 }

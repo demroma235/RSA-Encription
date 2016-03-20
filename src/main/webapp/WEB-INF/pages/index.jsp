@@ -15,13 +15,19 @@
                 <a href="/degree_with_mod">
                     <div class="button">Перейти</div>
                 </a>
+                <a href="/test_degree_with_mod">
+                    <div class="button">Тест скорости</div>
+                </a>
             </div>
         </div>
         <div class="algoritm">
-            <h3>Поиск простого числа</h3>
+            <h3>Определение простого числа</h3>
             <div class="algoritm-button-load">
                 <a href="/prime">
                     <div class="button">Перейти</div>
+                </a>
+                <a href="/test_prime">
+                    <div class="button">Тест скорости</div>
                 </a>
             </div>
         </div>
