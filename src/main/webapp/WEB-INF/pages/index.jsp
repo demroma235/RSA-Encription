@@ -31,6 +31,17 @@
                 </a>
             </div>
         </div>
+        <div class="algoritm">
+            <h3>Шифрование</h3>
+            <div class="algoritm-button-load">
+                <a href="/encryption/">
+                    <div class="button">Перейти</div>
+                </a>
+                <a href="/test_prime">
+                    <div class="button">Тест скорости</div>
+                </a>
+            </div>
+        </div>
     </div>
 </div>
 

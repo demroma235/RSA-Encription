@@ -13,9 +13,7 @@ public class Tools {
             bin.add(false);
             return bin;
         }
-        //Переменная со степенью
         Long number_interval = number;
-        //Запись обратного порядка двоичного предствления
         while (number_interval > 0) {
             if (number_interval % 2 == 0) {
                 bin.add(false);

@@ -10,16 +10,11 @@ import java.util.ArrayList;
 
 public class DegreeWithMod {
     public Result count(long number, long degree, long mod) {
-        //Записываем результаты в объект result
         Result result = new Result();
-        //Объект для записи числа степени -> Для двоичного вида
         Tools tools = new Tools();
         ArrayList<Boolean> bin = tools.decimal_in_binary(degree);
-        //Создание массивов и его запись для вычисления выражения
         Long bin_count_int[] = new Long[bin.size()];
-        //Запись первого числа в массив
         bin_count_int[0] = number;
-        //Сам алгоритм
         String bin_string = "";
         for (Boolean aBin : bin) {
             if (aBin) {
