@@ -1,3 +1,3 @@
-# RSA-Encription
+# RSA-Encryption
 
 Курсовая работа "Разработка RSA-шифрования"
