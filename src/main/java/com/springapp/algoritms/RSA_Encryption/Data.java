@@ -1,5 +1,6 @@
 package com.springapp.algoritms.RSA_Encryption;
 
+import com.springapp.algoritms.Prime.Prime;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
@@ -16,6 +17,17 @@ public class Data {
         setSecond_prime(3571L);
         setModule(getFirst_prime()*getSecond_prime());
         setFunction_Euler((getFirst_prime()-1)*(getSecond_prime()-1));
+        Prime prime = new Prime();
+        Long e = 0L;
+        for (Long i=getFirst_prime()+1; i < getFunction_Euler(); i++){
+            if (prime.isPrime(i)){
+                System.out.println("HOH = " + i);
+                e = i;
+                break;
+            }
+        }
+        System.out.println(e);
+        setE(e);
     }
 
 
@@ -115,6 +127,17 @@ public class Data {
         data.setSecond_prime(second);
         data.setModule(data.getFirst_prime()*data.getSecond_prime());
         data.setFunction_Euler((data.getFirst_prime()-1)*(data.getSecond_prime()-1));
+        Prime prime = new Prime();
+        Long e = 0L;
+        for (Long i=first+1; i < data.getFunction_Euler(); i++){
+            if (prime.isPrime(i)){
+                System.out.println("HOH = " + i);
+                e = i;
+                break;
+            }
+        }
+        System.out.println(e);
+        data.setE(e);
         return data;
     }
 }

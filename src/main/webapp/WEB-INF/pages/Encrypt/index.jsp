@@ -112,6 +112,11 @@
                     <td>${data.function_Euler}</td>
                     <td>!depend!</td>
                 </tr>
+                <tr>
+                    <td>E</td>
+                    <td>${data.e}</td>
+                    <td>!depend!</td>
+                </tr>
             </table>
 
         </div>
