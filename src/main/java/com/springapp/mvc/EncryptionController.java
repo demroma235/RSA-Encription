@@ -29,7 +29,7 @@ public class EncryptionController {
         Prime prime = new Prime();
         if (prime.isPrime(first_prime)) {
             Data data1 = (Data) request.getSession().getAttribute("data");
-            Data data2 = data1.setData(first_prime, data1.getSecond_prime());
+            Data data2 = Data.setData(first_prime, data1.getSecond_prime());
             request.getSession().setAttribute("data", data2);
         }
         return "redirect:/encryption/";
@@ -40,7 +40,7 @@ public class EncryptionController {
         Prime prime = new Prime();
         if (prime.isPrime(second_prime)) {
             Data data1 = (Data) request.getSession().getAttribute("data");
-            Data data2 = data1.setData(data1.getFirst_prime(), second_prime);
+            Data data2 = Data.setData(data1.getFirst_prime(), second_prime);
             request.getSession().setAttribute("data", data2);
         }
         return "redirect:/encryption/";

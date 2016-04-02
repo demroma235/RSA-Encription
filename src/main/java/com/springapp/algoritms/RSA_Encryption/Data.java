@@ -1,5 +1,6 @@
 package com.springapp.algoritms.RSA_Encryption;
 
+import com.springapp.algoritms.DegreeWithMod.DegreeWithMod;
 import com.springapp.algoritms.Prime.Prime;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -11,25 +12,6 @@ import org.springframework.stereotype.Component;
 @Scope("session")
 public class Data {
     private String name;
-
-    public Data() {
-        setFirst_prime(2L);
-        setSecond_prime(3571L);
-        setModule(getFirst_prime()*getSecond_prime());
-        setFunction_Euler((getFirst_prime()-1)*(getSecond_prime()-1));
-        Prime prime = new Prime();
-        Long e = 0L;
-        for (Long i=getFirst_prime()+1; i < getFunction_Euler(); i++){
-            if (prime.isPrime(i)){
-                System.out.println("HOH = " + i);
-                e = i;
-                break;
-            }
-        }
-        System.out.println(e);
-        setE(e);
-    }
-
 
     private Long open_key_1;
     private Long open_key_2;
@@ -121,13 +103,14 @@ public class Data {
         this.function_Euler = function_Euler;
     }
 
-    public Data setData(Long first, Long second){
+    public static Data setData(Long first, Long second){
         Data data = new Data();
+        Prime prime = new Prime();
         data.setFirst_prime(first);
         data.setSecond_prime(second);
         data.setModule(data.getFirst_prime()*data.getSecond_prime());
         data.setFunction_Euler((data.getFirst_prime()-1)*(data.getSecond_prime()-1));
-        Prime prime = new Prime();
+
         Long e = 0L;
         for (Long i=first+1; i < data.getFunction_Euler(); i++){
             if (prime.isPrime(i)){
@@ -138,6 +121,25 @@ public class Data {
         }
         System.out.println(e);
         data.setE(e);
+        data.setOpen_key_1(data.getE());
+        data.setOpen_key_2(data.getModule());
+        Long f = 0L;
+        System.out.println("START");
+        for (Long i=data.getE()+1; i < data.getModule(); i++){
+            if (prime.isPrime(i)){
+                System.out.println("i = " + i);
+                f = (data.getE() * i) % data.getFunction_Euler();
+                System.out.println("f = " + f);
+                if ((f==1) && (!i.equals(data.getOpen_key_1()))){
+                    System.out.println("HOT = " + i);
+                    data.setPrivate_key_1(i);
+                    break;
+                }
+            }
+
+        }
+        data.setPrivate_key_2(data.getModule());
+
         return data;
     }
 }

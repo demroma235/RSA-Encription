@@ -53,11 +53,13 @@
             var first_prime_update = $('#first_prime').val();
             var second_prime_update = $('#second_prime').val();
             if ((first_prime_update == '') && (second_prime_update == '')){
-                $('#error').html('Пустые значения полей');
+                $('#error-red').html('Пустые значения полей');
+                $('#error-red').css("display", "block");
             }
             if ((first_prime_update == '') && (second_prime_update != '')){
                 if (second_prime_update <= first_prime_value) {
-                    $('#error').html('Второе простое число должно быть больше первого');
+                    $('#error-red').html('Второе простое число должно быть больше первого');
+                    $('#error-red').css("display", "block");
                 }
                 else {
                     getCount(first_prime_value, second_prime_update);
@@ -65,14 +67,16 @@
             }
             if ((first_prime_update != '') && (second_prime_update == '')){
                 if (second_prime_value < first_prime_update) {
-                    $('#error').html('Первое простое число должно быть меньше второго');
+                    $('#error-red').html('Первое простое число должно быть меньше второго');
+                    $('#error-red').css("display", "block");
                 }
                 else {
                     getCount(first_prime_update, second_prime_value);
                 }
             }
             if ((first_prime_update != '') && (second_prime_update != '')){
-                $('#error').html('Можно обновить только одно значение');
+                $('#error-red').html('Можно обновить только одно значение');
+                $('#error-red').css("display", "block");
             }
         }
     </script>
@@ -81,7 +85,10 @@
 <div class="head-block">
     <h1>Шифрование</h1>
     <div class="count">
-        <div id="error"></div>
+        <div id="error-red"></div>
+        <c:if test="${empty data.private_key_1}">
+            <div id="error-yellow" style="display: block;">Для дальнейшей работы необходимо сгенерировать первый секретный ключ.</div>
+        </c:if>
         <div>
             <table id="prime_number" align="center">
                 <tr>
@@ -115,6 +122,16 @@
                 <tr>
                     <td>E</td>
                     <td>${data.e}</td>
+                    <td>!depend!</td>
+                </tr>
+                <tr>
+                    <td>Открытый ключ</td>
+                    <td>{${data.open_key_1}, ${data.open_key_2}}</td>
+                    <td>!depend!</td>
+                </tr>
+                <tr>
+                    <td>Секретный ключ</td>
+                    <td>{${data.private_key_1}, ${data.private_key_2}}</td>
                     <td>!depend!</td>
                 </tr>
             </table>

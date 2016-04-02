@@ -19,8 +19,7 @@ import javax.servlet.http.HttpSession;
 public class HelloController {
 	@RequestMapping(method = RequestMethod.GET)
 	public String printWelcome(ModelMap model, HttpServletRequest request) {
-		Data data = new Data();
-		request.getSession().setAttribute("data", data);
+		request.getSession().setAttribute("data", Data.setData(3L, 7L));
 		return "index";
 	}
 

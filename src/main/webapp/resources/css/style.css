@@ -107,6 +107,7 @@ input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
+    text-align: center;
 }
 #prime_number{
     text-align: center;
@@ -121,6 +122,23 @@ td{
     background-color: antiquewhite;
     border: 1px dotted greenyellow;
 }
-#error{
-    color:red;
+#error-red{
+    width: 400px;
+    font-size: 12px;
+    border-radius: 3px;
+    border: 1px dotted indianred;
+    background-color: lightsalmon;
+    color: darkred;
+    margin: 5px auto;
+    display: none;
+}
+#error-yellow{
+    width: 400px;
+    font-size: 12px;
+    border-radius: 3px;
+    border: 1px dotted navajowhite;
+    background-color: yellowgreen;
+    color: black;
+    margin: 5px auto;
+    display: none;
 }
