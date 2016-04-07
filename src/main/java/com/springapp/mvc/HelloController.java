@@ -2,7 +2,6 @@ package com.springapp.mvc;
 
 import com.springapp.TimeTests.Test;
 import com.springapp.algoritms.DegreeWithMod.DegreeWithMod;
-import com.springapp.algoritms.DegreeWithMod.Result;
 import com.springapp.algoritms.Prime.Prime;
 import com.springapp.algoritms.RSA_Encryption.Data;
 import org.springframework.stereotype.Controller;
@@ -12,14 +11,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/")
 public class HelloController {
 	@RequestMapping(method = RequestMethod.GET)
 	public String printWelcome(ModelMap model, HttpServletRequest request) {
-		request.getSession().setAttribute("data", Data.setData(3L, 7L));
+		request.getSession().setAttribute("data", Data.setData(3L, 113L));
 		return "index";
 	}
 
@@ -31,7 +29,7 @@ public class HelloController {
 	@RequestMapping(value = "/count_degree_with_mod", method = RequestMethod.GET)
 	public String countDegreeWithMod(ModelMap model, @RequestParam Long number, @RequestParam Long degree, @RequestParam Long mod){
 		DegreeWithMod degreeWithMod = new DegreeWithMod();
-		model.addAttribute("count", degreeWithMod.count(number, degree, mod).getCount());
+		model.addAttribute("count", degreeWithMod.count(number, degree, mod));
 		return "DegreeWithMod/result";
 	}
 

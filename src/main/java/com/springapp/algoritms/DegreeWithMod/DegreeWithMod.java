@@ -9,8 +9,8 @@ import java.util.ArrayList;
  */
 
 public class DegreeWithMod {
-    public Result count(long number, long degree, long mod) {
-        Result result = new Result();
+    public Long count(long number, long degree, long mod) {
+        Long value;
         Tools tools = new Tools();
         ArrayList<Boolean> bin = tools.decimal_in_binary(degree);
         Long bin_count_int[] = new Long[bin.size()];
@@ -24,7 +24,7 @@ public class DegreeWithMod {
             }
         }
         if (bin.size()==1){
-            result.setCount((long) Math.pow(number, degree)%mod);
+            value = (long) Math.pow(number, degree)%mod;
         }
         else{
             for (int i = 1; i < bin.size(); i++) {
@@ -34,8 +34,8 @@ public class DegreeWithMod {
                     bin_count_int[i] = (bin_count_int[i - 1]*bin_count_int[i - 1]) % mod;
                 }
             }
-            result.setCount(bin_count_int[bin.size() - 1]);
+            value = bin_count_int[bin.size() - 1];
         }
-        return result;
+        return value;
     }
 }

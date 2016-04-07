@@ -1,7 +1,9 @@
 package com.springapp.mvc;
 
+import com.springapp.algoritms.DegreeWithMod.DegreeWithMod;
 import com.springapp.algoritms.Prime.Prime;
 import com.springapp.algoritms.RSA_Encryption.Data;
+import com.springapp.algoritms.RSA_Encryption.Encryption;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -44,5 +46,52 @@ public class EncryptionController {
             request.getSession().setAttribute("data", data2);
         }
         return "redirect:/encryption/";
+    }
+
+    @RequestMapping(value = "/count_encrypt", method = RequestMethod.GET)
+    public String getEncrypt(Model model, HttpServletRequest request, @RequestParam Long number) {
+        DegreeWithMod degreeWithMod = new DegreeWithMod();
+        Data data = (Data) request.getSession().getAttribute("data");
+        model.addAttribute("result", degreeWithMod.count(number, data.getOpen_key_1(), data.getOpen_key_2()));
+        return "Encrypt/result";
+    }
+
+    @RequestMapping(value = "/count_interpretation", method = RequestMethod.GET)
+    public String getInterpretation(Model model, HttpServletRequest request, @RequestParam Long number) {
+        DegreeWithMod degreeWithMod = new DegreeWithMod();
+        Data data = (Data) request.getSession().getAttribute("data");
+        model.addAttribute("result", degreeWithMod.count(number, data.getPrivate_key_1(), data.getPrivate_key_2()));
+        return "Encrypt/result";
+    }
+
+    @RequestMapping(value = "/test", method = RequestMethod.GET)
+    public String getTest(Model model, HttpServletRequest request) {
+        DegreeWithMod degreeWithMod = new DegreeWithMod();
+        Data data = (Data) request.getSession().getAttribute("data");
+        for (Long i = data.getFirst_prime();i < data.getModule(); i++){
+            Long f = degreeWithMod.count(degreeWithMod.count(i, data.getOpen_key_1(), data.getPrivate_key_2()), data.getPrivate_key_1(), data.getPrivate_key_2());
+            if (i.equals(f)){
+                System.out.println("i = " + i + " : f = " + f + " : true");
+            }
+            else{
+                System.out.println("i = " + i + " : f = " + f + " : false");
+            }
+        }
+        return "redirect:/encryption/";
+    }
+
+    @RequestMapping(value = "/count_encrypt_string", method = RequestMethod.GET)
+    public String getEncryptString(Model model, HttpServletRequest request, @RequestParam String string) {
+        Encryption encryption = new Encryption();
+        Data data = (Data) request.getSession().getAttribute("data");
+        model.addAttribute("result", encryption.toEncrypt(string, data.getOpen_key_1(), data.getOpen_key_2()));
+        return "Encrypt/result";
+    }
+    @RequestMapping(value = "/count_deencrypt_string", method = RequestMethod.GET)
+    public String getDeEncryptString(Model model, HttpServletRequest request, @RequestParam String string) {
+        Encryption encryption = new Encryption();
+        Data data = (Data) request.getSession().getAttribute("data");
+        model.addAttribute("result", encryption.toEncrypt(string, data.getPrivate_key_1(), data.getPrivate_key_2()));
+        return "Encrypt/result";
     }
 }

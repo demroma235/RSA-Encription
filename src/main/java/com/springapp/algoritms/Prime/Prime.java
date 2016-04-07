@@ -13,7 +13,7 @@ public class Prime {
             return true;
         }
         else{
-            return degreeWithMod.count(a, number-1, number).getCount() == 1;
+            return degreeWithMod.count(a, number-1, number) == 1;
         }
     }
 }

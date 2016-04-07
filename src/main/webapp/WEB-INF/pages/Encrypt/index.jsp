@@ -79,17 +79,97 @@
                 $('#error-red').css("display", "block");
             }
         }
+        function getEncrypt(number) {
+                $.ajax({
+                    url: "count_encrypt?number="+number,
+                    success: function(response) {
+                        $('#result-encrypt').html(response);
+                    },
+                    error: function(e){
+                        alert('Ошибочка' + e);
+                    }
+                });
+        }
+        function getDeEncrypt(number) {
+            $.ajax({
+                url: "count_interpretation?number="+number,
+                success: function(response) {
+                    $('#result-interpretation').html(response);
+                },
+                error: function(e){
+                    alert('Ошибочка' + e);
+                }
+            });
+        }
+        function getEncryptString(string) {
+            $.ajax({
+                url: "count_encrypt_string?string="+string,
+                success: function(response) {
+                    $('#result-encrypt-string').html(response);
+                },
+                error: function(e){
+                    alert('Ошибочка' + e);
+                }
+            });
+        }
+        function getDeEncryptString(string) {
+            $.ajax({
+                url: "count_deencrypt_string?string="+string,
+                success: function(response) {
+                    $('#result-interpretation-string').html(response);
+                },
+                error: function(e){
+                    alert('Ошибочка' + e);
+                }
+            });
+        }
     </script>
 </head>
 <body>
 <div class="head-block">
     <h1>Шифрование</h1>
+    <div class="encrypt">
+        <h2>Шифрование числа</h2>
+        <div class="block-encrypt">
+            <input type="number" id="number_for_encrypt">
+            <br>
+            <input type="button" class="button number_for_encrypt_button" value="Зашифровать" onclick="getEncrypt($('#number_for_encrypt').val())">
+            <div id="result-encrypt"></div>
+        </div>
+        <div class="block-encrypt">
+            <input type="number" id="number_for_interpretation">
+            <br>
+            <input type="button" class="button number_for_encrypt_button" value="Расшифровать" onclick="getDeEncrypt($('#number_for_interpretation').val())">
+            <div id="result-interpretation"></div>
+        </div>
+        <a href="test">Тест</a>
+    </div>
+    <div class="encrypt">
+        <h2>Шифрование Текста</h2>
+        <div class="block-encrypt-string">
+            <textarea name="" id="string_for_encrypt" cols="30" rows="5"></textarea>
+            <br>
+            <input type="button" class="button number_for_encrypt_button" value="Зашифровать" onclick="getEncryptString($('#string_for_encrypt').val())">
+            <div class="result" id="result-encrypt-string"></div>
+        </div>
+        <div class="block-encrypt-string">
+            <textarea name="" id="string_for_interpretation" cols="30" rows="5"></textarea>
+            <br>
+            <input type="button" class="button number_for_encrypt_button" value="Расшифровать" onclick="getDeEncryptString($('#string_for_interpretation').val())">
+            <div class="result" id="result-interpretation-string"></div>
+        </div>
+    </div>
     <div class="count">
+        <h2>Настройки</h2>
         <div id="error-red"></div>
         <c:if test="${empty data.private_key_1}">
-            <div id="error-yellow" style="display: block;">Для дальнейшей работы необходимо сгенерировать первый секретный ключ.</div>
+            <script>
+                $('.number_for_encrypt_button').prop("disabled", true);
+            </script>
+            <div id="error-yellow" style="display: block;">Для дальнейшей работы необходимо сгенерировать первый секретный ключ. Подберите подходящую пару простых чисел.</div>
         </c:if>
         <div>
+
             <table id="prime_number" align="center">
                 <tr>
                     <td>Первое простое число</td>
