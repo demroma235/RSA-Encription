@@ -3,158 +3,147 @@ package com.springapp.TimeTests;
 import com.springapp.algoritms.DegreeWithMod.DegreeWithMod;
 import com.springapp.algoritms.Prime.Prime;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Random;
+import java.util.*;
 
 /**
  * Created by Roman on 09.03.2016.
  */
 public class Test {
-    public Map<String, Long> test_for_degree_with_mod(){
+    public Map<Long, Long> test_for_degree_with_mod_number(){
         final long numberOfMeasurements = 50000;
         final long LOWER_RANGE = 2;
         final long UPPER_RANGE = 999999;
         Random random = new Random();
 
-        long number0 = LOWER_RANGE +
+        long degree = LOWER_RANGE +
                 (long)(random.nextDouble()*(UPPER_RANGE - LOWER_RANGE));
-        long degree0 = LOWER_RANGE +
+        long mod = LOWER_RANGE +
                 (long)(random.nextDouble()*(UPPER_RANGE - LOWER_RANGE));
-        long mod0 = LOWER_RANGE +
-                (long)(random.nextDouble()*(UPPER_RANGE - LOWER_RANGE));
-        long number1 = LOWER_RANGE +
-                (long)(random.nextDouble()*(UPPER_RANGE - LOWER_RANGE));
-        long degree1 = LOWER_RANGE +
-                (long)(random.nextDouble()*(UPPER_RANGE - LOWER_RANGE));
-        long mod1 = LOWER_RANGE +
-                (long)(random.nextDouble()*(UPPER_RANGE - LOWER_RANGE));
-        long number2 = LOWER_RANGE +
-                (long)(random.nextDouble()*(UPPER_RANGE - LOWER_RANGE));
-        long degree2 = LOWER_RANGE +
-                (long)(random.nextDouble()*(UPPER_RANGE - LOWER_RANGE));
-        long mod2 = LOWER_RANGE +
-                (long)(random.nextDouble()*(UPPER_RANGE - LOWER_RANGE));
-        long number3 = LOWER_RANGE +
-                (long)(random.nextDouble()*(UPPER_RANGE - LOWER_RANGE));
-        long degree3 = LOWER_RANGE +
-                (long)(random.nextDouble()*(UPPER_RANGE - LOWER_RANGE));
-        long mod3 = LOWER_RANGE +
-                (long)(random.nextDouble()*(UPPER_RANGE - LOWER_RANGE));
+
         DegreeWithMod degreeWithMod = new DegreeWithMod();
         int i = 0;
+        int numberTest = 100;
         Long timestart = 0L;
         Long timefinish = 0L;
-        Map<String, Long> result = new HashMap<String, Long>();
-        timestart = System.currentTimeMillis();
-        while (i<numberOfMeasurements) {
-            degreeWithMod.count(number0, degree0, mod0);
-            i++;
+        Map<Long, Long> result = new HashMap<Long, Long>();
+        while (numberTest > 0) {
+            long number = LOWER_RANGE +
+                    (long)(random.nextDouble()*(UPPER_RANGE - LOWER_RANGE));
+            i = 0;
+
+            timestart = System.currentTimeMillis();
+            while (i<numberOfMeasurements) {
+                degreeWithMod.count(number, degree, mod);
+                i++;
+            }
+            timefinish = System.currentTimeMillis();
+            result.put(number, (timefinish-timestart));
+            numberTest--;
         }
-        timefinish = System.currentTimeMillis();
-        result.put(number0 + ", " + degree0 + ", " + mod0, (timefinish-timestart));
-        System.out.println("Test 0 - Done!");
-        System.out.println(number0 + " : " + (timefinish - timestart));
-        System.out.println("=======");
-        timestart = System.currentTimeMillis();
-        i = 0;
-        while (i<numberOfMeasurements) {
-            degreeWithMod.count(number1, degree1, mod1);
-            i++;
+        Map<Long, Long> new_result = new TreeMap<Long, Long>(result);
+        return new_result;
+    }
+
+    public Map<Long, Long> test_for_degree_with_mod_degree(){
+        final long numberOfMeasurements = 50000;
+        final long LOWER_RANGE = 2;
+        final long UPPER_RANGE = 999999;
+        Random random = new Random();
+
+        long number = LOWER_RANGE +
+                (long)(random.nextDouble()*(UPPER_RANGE - LOWER_RANGE));
+        long mod = LOWER_RANGE +
+                (long)(random.nextDouble()*(UPPER_RANGE - LOWER_RANGE));
+
+        DegreeWithMod degreeWithMod = new DegreeWithMod();
+        int i = 0;
+        int numberTest = 100;
+        Long timestart = 0L;
+        Long timefinish = 0L;
+        Map<Long, Long> result = new HashMap<Long, Long>();
+        while (numberTest > 0) {
+            long degree = LOWER_RANGE +
+                    (long)(random.nextDouble()*(UPPER_RANGE - LOWER_RANGE));
+            i = 0;
+
+            timestart = System.currentTimeMillis();
+            while (i<numberOfMeasurements) {
+                degreeWithMod.count(number, degree, mod);
+                i++;
+            }
+            timefinish = System.currentTimeMillis();
+            result.put(degree, (timefinish-timestart));
+            numberTest--;
         }
-        timefinish = System.currentTimeMillis();
-        result.put(number1 + ", " + degree1 + ", " + mod1, (timefinish-timestart));
-        System.out.println("Test 1 - Done!");
-        System.out.println(number1 + " : " + (timefinish - timestart));
-        System.out.println("=======");
-        timestart = System.currentTimeMillis();
-        i = 0;
-        while (i<numberOfMeasurements) {
-            degreeWithMod.count(number2, degree2, mod2);
-            i++;
+        Map<Long, Long> new_result = new TreeMap<Long, Long>(result);
+        return new_result;
+    }
+
+    public Map<Long, Long> test_for_degree_with_mod_mod(){
+        final long numberOfMeasurements = 50000;
+        final long LOWER_RANGE = 2;
+        final long UPPER_RANGE = 999999;
+        Random random = new Random();
+
+        long number = LOWER_RANGE +
+                (long)(random.nextDouble()*(UPPER_RANGE - LOWER_RANGE));
+        long degree = LOWER_RANGE +
+                (long)(random.nextDouble()*(UPPER_RANGE - LOWER_RANGE));
+
+        DegreeWithMod degreeWithMod = new DegreeWithMod();
+        int i = 0;
+        int numberTest = 100;
+        Long timestart = 0L;
+        Long timefinish = 0L;
+        Map<Long, Long> result = new HashMap<Long, Long>();
+        while (numberTest > 0) {
+            long mod = LOWER_RANGE +
+                    (long)(random.nextDouble()*(UPPER_RANGE - LOWER_RANGE));
+
+            i = 0;
+
+            timestart = System.currentTimeMillis();
+            while (i<numberOfMeasurements) {
+                degreeWithMod.count(number, degree, mod);
+                i++;
+            }
+            timefinish = System.currentTimeMillis();
+            result.put(mod, (timefinish-timestart));
+            numberTest--;
         }
-        timefinish = System.currentTimeMillis();
-        result.put(number2 + ", " + degree2 + ", " + mod2, (timefinish-timestart));
-        System.out.println("Test 2 - Done!");
-        System.out.println(number2 + " : " + (timefinish - timestart));
-        System.out.println("=======");
-        timestart = System.currentTimeMillis();
-        i = 0;
-        while (i<numberOfMeasurements) {
-            degreeWithMod.count(number3, degree3, mod3);
-            i++;
-        }
-        timefinish = System.currentTimeMillis();
-        result.put(number3 + ", " + degree3 + ", " + mod3, (timefinish-timestart));
-        System.out.println("Test 3 - Done!");
-        System.out.println(number3 + " : " + (timefinish - timestart));
-        System.out.println("=======");
-        return result;
+        Map<Long, Long> new_result = new TreeMap<Long, Long>(result);
+        return new_result;
     }
 
     public Map<Long, Long> test_for_prime() {
         final long numberOfMeasurements = 50000;
         final long LOWER_RANGE = 2;
-        final long UPPER_RANGE = 999999999;
+        final long UPPER_RANGE = 99999999;
         Random random = new Random();
 
-        long number0 = LOWER_RANGE +
-                (long)(random.nextDouble()*(UPPER_RANGE - LOWER_RANGE));
-        long number1 = LOWER_RANGE +
-                (long)(random.nextDouble()*(UPPER_RANGE - LOWER_RANGE));
-        long number2 = LOWER_RANGE +
-                (long)(random.nextDouble()*(UPPER_RANGE - LOWER_RANGE));
-        long number3 = LOWER_RANGE +
-                (long)(random.nextDouble()*(UPPER_RANGE - LOWER_RANGE));
         Prime prime = new Prime();
         int i = 0;
+        int numberTest = 100;
         Long timestart = 0L;
         Long timefinish = 0L;
         Map<Long, Long> result = new HashMap<Long, Long>();
-        timestart = System.currentTimeMillis();
-        while (i<numberOfMeasurements) {
-            prime.isPrime(number0);
-            i++;
+        while (numberTest > 0) {
+            long number = LOWER_RANGE +
+                    (long)(random.nextDouble()*(UPPER_RANGE - LOWER_RANGE));
+            i = 0;
+
+            timestart = System.currentTimeMillis();
+            while (i<numberOfMeasurements) {
+                prime.isPrime(number);
+                i++;
+            }
+            timefinish = System.currentTimeMillis();
+            result.put(number, (timefinish-timestart));
+            numberTest--;
         }
-        timefinish = System.currentTimeMillis();
-        result.put(number0, (timefinish-timestart));
-        System.out.println("Test 0 - Done!");
-        System.out.println(number0 + " : " + (timefinish - timestart));
-        System.out.println("=======");
-        timestart = System.currentTimeMillis();
-        i = 0;
-        while (i<numberOfMeasurements) {
-            prime.isPrime(number1);
-            i++;
-        }
-        timefinish = System.currentTimeMillis();
-        result.put(number1, (timefinish-timestart));
-        System.out.println("Test 1 - Done!");
-        System.out.println(number1 + " : " + (timefinish - timestart));
-        System.out.println("=======");
-        timestart = System.currentTimeMillis();
-        i = 0;
-        while (i<numberOfMeasurements) {
-            prime.isPrime(number2);
-            i++;
-        }
-        timefinish = System.currentTimeMillis();
-        result.put(number2, (timefinish-timestart));
-        System.out.println("Test 2 - Done!");
-        System.out.println(number2 + " : " + (timefinish - timestart));
-        System.out.println("=======");
-        timestart = System.currentTimeMillis();
-        i = 0;
-        while (i<numberOfMeasurements) {
-            prime.isPrime(number3);
-            i++;
-        }
-        timefinish = System.currentTimeMillis();
-        result.put(number3, (timefinish-timestart));
-        System.out.println("Test 3 - Done!");
-        System.out.println(number3 + " : " + (timefinish - timestart));
-        System.out.println("=======");
-        return result;
+        Map<Long, Long> new_result = new TreeMap<Long, Long>(result);
+
+        return new_result;
     }
+
 }

@@ -94,4 +94,19 @@ public class EncryptionController {
         model.addAttribute("result", encryption.toEncrypt(string, data.getPrivate_key_1(), data.getPrivate_key_2()));
         return "Encrypt/result";
     }
+
+    @RequestMapping(value = "/count_encryptV2_string", method = RequestMethod.GET)
+    public String getEncryptV2String(Model model, HttpServletRequest request, @RequestParam String string) {
+        Encryption encryption = new Encryption();
+        Data data = (Data) request.getSession().getAttribute("data");
+        model.addAttribute("result", encryption.toEncryptV2(string, data.getOpen_key_1(), data.getOpen_key_2()));
+        return "Encrypt/result";
+    }
+    @RequestMapping(value = "/count_deencryptV2_string", method = RequestMethod.GET)
+    public String getDeEncryptV2String(Model model, HttpServletRequest request, @RequestParam String string) {
+        Encryption encryption = new Encryption();
+        Data data = (Data) request.getSession().getAttribute("data");
+        model.addAttribute("result", encryption.toDeEncryptV2(string, data.getPrivate_key_1(), data.getPrivate_key_2()));
+        return "Encrypt/result";
+    }
 }

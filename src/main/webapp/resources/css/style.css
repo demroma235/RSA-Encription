@@ -145,6 +145,7 @@ td{
 .encrypt{
     width: 400px;
     margin:0 auto;
+    display: inline-block;
 }
 .block-encrypt{
     width: 200px;

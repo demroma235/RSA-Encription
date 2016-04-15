@@ -16,13 +16,13 @@ import javax.servlet.http.HttpServletRequest;
 @RequestMapping("/")
 public class HelloController {
 	@RequestMapping(method = RequestMethod.GET)
-	public String printWelcome(ModelMap model, HttpServletRequest request) {
+	public String printWelcome(HttpServletRequest request) {
 		request.getSession().setAttribute("data", Data.setData(3L, 113L));
 		return "index";
 	}
 
 	@RequestMapping(value = "/degree_with_mod")
-	public String degreeWithMod(ModelMap model){
+	public String degreeWithMod(){
 		return "DegreeWithMod/index";
 	}
 
@@ -33,15 +33,29 @@ public class HelloController {
 		return "DegreeWithMod/result";
 	}
 
-	@RequestMapping(value = "/test_degree_with_mod", method = RequestMethod.GET)
-	public String testDegreeWithMod(ModelMap model){
+	@RequestMapping(value = "/test_degree_with_mod_number", method = RequestMethod.GET)
+	public String testDegreeWithModNumber(ModelMap model){
 		Test test = new Test();
-		model.addAttribute("timetest", test.test_for_degree_with_mod());
-		return "PrimeNumber/count";
+		model.addAttribute("timetest", test.test_for_degree_with_mod_number());
+		return "DegreeWithMod/count";
+	}
+
+	@RequestMapping(value = "/test_degree_with_mod_degree", method = RequestMethod.GET)
+	public String testDegreeWithModDegree(ModelMap model){
+		Test test = new Test();
+		model.addAttribute("timetest", test.test_for_degree_with_mod_number());
+		return "DegreeWithMod/count";
+	}
+
+	@RequestMapping(value = "/test_degree_with_mod_mod", method = RequestMethod.GET)
+	public String testDegreeWithModMod(ModelMap model){
+		Test test = new Test();
+		model.addAttribute("timetest", test.test_for_degree_with_mod_number());
+		return "DegreeWithMod/count";
 	}
 
 	@RequestMapping(value = "/prime")
-	public String prime_page(ModelMap model){return "PrimeNumber/index";}
+	public String prime_page(){return "PrimeNumber/index";}
 
 	@RequestMapping(value = "/count_prime", method = RequestMethod.GET)
 	public String countPrime(ModelMap model, @RequestParam long number){

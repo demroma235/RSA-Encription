@@ -2,41 +2,33 @@
 <head>
     <%@include file="../include/head.jsp"%>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-
     <script type="text/javascript">
-        google.charts.load('current', {'packages':['bar']});
-        google.charts.setOnLoadCallback(drawStuff);
+        google.charts.load('current', {'packages':['corechart']});
+        google.charts.setOnLoadCallback(drawChart);
 
-        function drawStuff() {
-            var data = new google.visualization.arrayToDataTable([
-                ['Run',  'Time'],
+        function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+                ['Key', 'Value'],
                 <c:forEach var="listValue" items="${timetest}">
-                ["${listValue.key}",  ${listValue.value}],
+                ['${listValue.key}',  ${listValue.value}],
                 </c:forEach>
             ]);
 
             var options = {
-                title: 'TimeTest',
-                width: 500,
-                legend: { position: 'none' },
-                axes: {
-                    x: {
-                        0: { side: 'top', label: '50 000 operations'} // Top x-axis.
-                    }
-                },
-                bar: { groupWidth: "90%" }
+                title: 'Замеры скорости работы',
+                curveType: 'function',
+                legend: { position: 'bottom' }
             };
 
-            var chart = new google.charts.Bar(document.getElementById('top_x_div'));
-            // Convert the Classic options to Material options.
-            chart.draw(data, google.charts.Bar.convertOptions(options));
-        };
+            var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
 
+            chart.draw(data, options);
+        }
     </script>
 </head>
 <body>
 <div class="head-block">
-    <div id="top_x_div" style="width: 500px; height: 300px;"></div>
+    <div id="curve_chart" style="width: 500px; height: 300px;"></div>
     <div>
         <c:forEach var="listValue" items="${timetest}">
             [${listValue.key},  ${listValue.value}],

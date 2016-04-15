@@ -80,6 +80,7 @@
             }
         }
         function getEncrypt(number) {
+            if (checkNumberWithModule(number)) {
                 $.ajax({
                     url: "count_encrypt?number="+number,
                     success: function(response) {
@@ -89,17 +90,27 @@
                         alert('Ошибочка' + e);
                     }
                 });
+            }
+            else {
+                $('#result-encrypt').html("Число должно быть меньше модуля. <br/>См. Таблицу.");
+            }
+
         }
         function getDeEncrypt(number) {
-            $.ajax({
-                url: "count_interpretation?number="+number,
-                success: function(response) {
-                    $('#result-interpretation').html(response);
-                },
-                error: function(e){
-                    alert('Ошибочка' + e);
-                }
-            });
+            if (checkNumberWithModule(number)) {
+                $.ajax({
+                    url: "count_interpretation?number=" + number,
+                    success: function (response) {
+                        $('#result-interpretation').html(response);
+                    },
+                    error: function (e) {
+                        alert('Ошибочка' + e);
+                    }
+                });
+            }
+            else {
+                $('#result-interpretation').html("Число должно быть меньше модуля. <br/>См. Таблицу.");
+            }
         }
         function getEncryptString(string) {
             $.ajax({
@@ -123,6 +134,37 @@
                 }
             });
         }
+        function getEncryptV2String(string) {
+            $.ajax({
+                url: "count_encryptV2_string?string="+string,
+                success: function(response) {
+                    $('#result-encryptV2-string').html(response);
+                },
+                error: function(e){
+                    alert('Ошибочка' + e);
+                }
+            });
+        }
+        function getDeEncryptV2String(string) {
+            $.ajax({
+                url: "count_deencryptV2_string?string="+string,
+                success: function(response) {
+                    $('#result-interpretationV2-string').html(response);
+                },
+                error: function(e){
+                    alert('Ошибочка' + e);
+                }
+            });
+        }
+        function checkNumberWithModule(number){
+            if (parseInt($('#module').html()) < parseInt(number)){
+                return false;
+            }
+            else{
+                return true;
+            }
+        }
+
     </script>
 </head>
 <body>
@@ -159,6 +201,23 @@
             <div class="result" id="result-interpretation-string"></div>
         </div>
     </div>
+
+    <div class="encrypt">
+        <h2>Шифрование Текста v2</h2>
+        <div class="block-encrypt-string">
+            <textarea name="" id="string_for_encryptV2" cols="30" rows="5"></textarea>
+            <br>
+            <input type="button" class="button number_for_encrypt_button" value="Зашифровать" onclick="getEncryptV2String($('#string_for_encryptV2').val())">
+            <div class="result" id="result-encryptV2-string"></div>
+        </div>
+        <div class="block-encrypt-string">
+            <textarea name="" id="string_for_interpretationV2" cols="30" rows="5"></textarea>
+            <br>
+            <input type="button" class="button number_for_encrypt_button" value="Расшифровать" onclick="getDeEncryptV2String($('#string_for_interpretationV2').val())">
+            <div class="result" id="result-interpretationV2-string"></div>
+        </div>
+    </div>
+
     <div class="count">
         <h2>Настройки</h2>
         <div id="error-red"></div>
@@ -175,9 +234,9 @@
                     <td>Первое простое число</td>
                     <td id="first_prime_value">${data.first_prime}</td>
                     <td>
-                            <input type="number" name="first_prime" id="first_prime">
-                            <br/>
-                            <input class="small_button" type="button" onclick="take_numbers()" value="Изменить">
+                        <input type="number" name="first_prime" id="first_prime">
+                        <br/>
+                        <input class="small_button" type="button" onclick="take_numbers()" value="Изменить">
                     </td>
                 </tr>
                 <tr>
@@ -191,7 +250,7 @@
                 </tr>
                 <tr>
                     <td>Модуль</td>
-                    <td>${data.module}</td>
+                    <td id="module">${data.module}</td>
                     <td>!depend!</td>
                 </tr>
                 <tr>

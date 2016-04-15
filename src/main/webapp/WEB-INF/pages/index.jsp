@@ -15,8 +15,14 @@
                 <a href="/degree_with_mod">
                     <div class="button">Перейти</div>
                 </a>
-                <a href="/test_degree_with_mod">
-                    <div class="button">Тест скорости</div>
+                <a href="/test_degree_with_mod_number">
+                    <div class="button">Тест скорости <br/>Изменяется Number</div>
+                </a>
+                <a href="/test_degree_with_mod_degree">
+                    <div class="button">Тест скорости <br/>Изменяется Degree</div>
+                </a>
+                <a href="/test_degree_with_mod_mod">
+                    <div class="button">Тест скорости <br/>Изменяется Mod</div>
                 </a>
             </div>
         </div>
